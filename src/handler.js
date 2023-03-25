@@ -144,9 +144,17 @@ const getBookByIdHandler = (request, h) => {
 
 const editBookByIdHandler = (request, h) => {
     const { bookId } = request.params;
-
     const {
-        name, year, author, summary, publisher, pageCount, readPage, reading,} = request.payload;
+        name, 
+        year, 
+        author, 
+        summary, 
+        publisher, 
+        pageCount, 
+        readPage, 
+        reading,
+    } = request.payload;
+
     const updatedAt = new Date().toISOString();
     const index = books.findIndex((book) => book.id === bookId);
 
@@ -192,7 +200,7 @@ const editBookByIdHandler = (request, h) => {
 
     const response = h.response({
         status: 'fail',
-        message: 'Gagal memperbarui buku. id tidak ditemukan',
+        message: 'Gagal memperbarui buku. Id tidak ditemukan',
     });
     response.code(404);
     return response;
@@ -202,7 +210,7 @@ const editBookByIdHandler = (request, h) => {
 const deleteBookByIdHandler = (request, h) => {
     const { bookId } = request.params;
 
-    const index = books.findIndex((book) = book.id === bookId);
+    const index = books.findIndex((book) => book.id === bookId);
 
     if (index !== -1) {
         books.splice(index, 1);
@@ -222,6 +230,6 @@ const deleteBookByIdHandler = (request, h) => {
     response.code(404);
     return response;
 
-}
+};
 
 module.exports = { addBookHandler, getAllBookHandler, getBookByIdHandler, editBookByIdHandler, deleteBookByIdHandler };
